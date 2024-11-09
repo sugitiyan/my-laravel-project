@@ -1,45 +1,62 @@
-/* resources/css/app.css */
+/* app.css */
+
 body {
-    font-family: 'Nunito', sans-serif;
-    background-color: #f8fafc;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
     margin: 0;
     padding: 0;
 }
 
 .container {
-    max-width: 600px;
-    margin: 0 auto;
+    width: 90%;
+    max-width: 400px;
+    margin: 50px auto;
     padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
     text-align: center;
-    color: #333;
+    margin-bottom: 20px;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-}
-
-input {
+div {
     margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
     padding: 10px;
-    font-size: 1rem;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
 
 button {
+    width: 100%;
     padding: 10px;
-    font-size: 1rem;
     background-color: #007bff;
-    color: #fff;
+    color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 16px;
 }
 
 button:hover {
     background-color: #0056b3;
+}
+
+span {
+    color: red;
+    font-size: 14px;
 }
