@@ -12,6 +12,8 @@
         <div class="header">FashionablyLate</div>
         <div class="subheader">Confirm</div>
 
+        <form method="POST" action="{{ route('contact.store') }}">
+            @csrf
         <table>
             <tr>
                 <td class="label">お名前</td>
@@ -48,8 +50,10 @@
         </table>
 
         <div class="buttons">
-            <a href="{{ route('contact.submit') }}" class="button submit-btn">送信</a>
-            <a href="{{ route('contact.edit') }}" class="button edit-btn">修正</a>
+           <a href="{{ route('contact.form') }}" class="button edit-btn">修正</a>
+
+                <!-- 送信ボタン -->
+           <button type="submit" class="button submit-btn">送信</button> 
         </div>
     </div>
 </body>

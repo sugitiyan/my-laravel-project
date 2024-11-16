@@ -16,17 +16,28 @@ class CreateContactsTable extends Migration
         // テーブルが存在しない場合のみ作成
         if (!Schema::hasTable('contacts')) {
             Schema::create('contacts', function (Blueprint $table) {
-                $table->id();
-                $table->bigInteger('category_id')->unsigned()->index();
+                $table->id(); // 主キー
+
+                // category_id が外部キーであれば外部キー設定を検討
+                $table->foreignId('category_id')->constrained()->index();
+
+                // 基本的な個人情報の列
                 $table->string('first_name');
                 $table->string('last_name');
-                $table->tinyInteger('gender');
+                $table->tinyInteger('gender'); // 性別 (1: 男性, 2: 女性など)
+
+                // 連絡先情報
                 $table->string('email');
-                $table->string('tell');
+                $table->string('phone')->nullable(); // "tell" を "phone" に修正し、nullable に変更
+
+                // 住所関連
                 $table->string('address')->nullable();
                 $table->string('building')->nullable();
-                $table->text('detail')->nullable();
-                $table->timestamps();
+
+                // お問い合わせ内容
+                $table->text('message'); // "detail" を "message" に修正
+
+                $table->timestamps(); // created_at と updated_at
             });
         }
     }

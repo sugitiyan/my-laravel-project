@@ -11,10 +11,12 @@
 <div class="container">
         <h1>FashionablyLate</h1>
         <h2>Contact</h2>
-        <form>
+         <form method="POST" action="/confirm">
+            @csrf
             <div class="form-group">
                 <label for="name">お名前 <span style="color: red;">*</span></label>
-                <input type="text" id="name" placeholder="例: 山田 太郎">
+                <input type="text" id="last_name" placeholder="例: 山田 太郎">
+                <input type="text" id="first_name" placeholder="例: 山田 太郎">
             </div>
             <div class="form-group">
                 <label>性別 <span style="color: red;">*</span></label>
@@ -51,7 +53,7 @@
             </div>
             <div class="form-group">
                 <label for="inquiry-content">お問い合わせ内容 <span style="color: red;">*</span></label>
-                <textarea id="inquiry-content" rows="4" placeholder="お問い合わせ内容をご記載ください"></textarea>
+                <textarea id="inquiry-content" rows="4" placeholder="message"></textarea>
             </div>
             <button type="submit">確認画面</button>
         </form>
