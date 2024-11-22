@@ -1,71 +1,28 @@
 <?php
-
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ContactRequest;
 use App\Models\Contact;
-use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
-    // 入力ページの表示
-    public function showForm()
-    {
-        return view('contact_form'); // お問い合わせフォームのビュー
-    }
+    public function contact_form()
+  {
+    return view('contact_form');
+  }
 
-    // 確認ページの表示
-    public function confirm(Request $request)
-    {
-        return $request;
-        
-        // // バリデーション
-        // $validated = $request->validate([
-        //     'last_name' => 'required|string|max:255',
-        //     'first_name' => 'required|string|max:255',
-        //     'email' => 'required|email|max:255',
-        //     'message' => 'required|string|max:2000',
-        // ]);
+    public function confirm(ContactRequest $request)
+     {
+         $contact = $request->only(['last_name','first_name','gender','email','phone','address','building','inquiry_type','inquiry_content']);
+          return view('contact_confirm',['contact' => $contact]);
+     }
+    
+    
+     public function store(ContactRequest $request)
+     {
+         $contact = $request->only(['last_name','first_name','gender','email','phone','address','building','inquiry_type','inquiry_content']);
+         Contact::create($contact);
 
-        // // セッションにデータを保存
-        // $request->session()->put('contact', $validated);
-
-        // return view('contact_confirm', ['data' => $validated]); // 確認ページのビュー
-    }
-
-    // サンクスページの表示
-    public function showThanks()
-    {
-        return view('thanks'); // サンクスページのビュー
-    } 
-
-    // お問い合わせの保存（CRUD: Create）
-    public function store(Request $request)
-    {
-        // セッションからデータを取得
-        $contactData = $request->session()->get('contact');
-
-        // データベースに保存
-        Contact::create($contactData);
-
-        // セッションのデータを削除
-        $request->session()->forget('contact');
-
-        return redirect()->route('contact.thanks'); // サンクスページへリダイレクト
-    }
-
-    // 一覧表示（CRUD: Read）
-    public function index()
-    {
-        $contacts = Contact::all();
-        return view('contacts.index', compact('contacts')); // 一覧ページのビュー
-    }
-
-    // お問い合わせの削除（CRUD: Delete）
-    public function destroy($id)
-    {
-        $contact = Contact::findOrFail($id);
-        $contact->delete();
-
-        return redirect()->route('contact.index')->with('success', 'Contact deleted successfully!');
-    }
+         return view('thanks');
+     }
 }
