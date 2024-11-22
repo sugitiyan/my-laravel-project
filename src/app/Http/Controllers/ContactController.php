@@ -8,7 +8,10 @@ class ContactController extends Controller
 {
     public function contact_form()
   {
-    return view('contact_form');
+    $heading = 'お問い合わせフォーム'; 
+        
+        // $headingをビューに渡す
+    return view('contact_form', compact('heading'));
   }
 
     public function confirm(ContactRequest $request)
