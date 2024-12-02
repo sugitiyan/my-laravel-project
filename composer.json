@@ -1,5 +1,6 @@
 {
     "require": {
-        "laravel/fortify": "^1.24"
+        "laravel/fortify": "^1.24",
+        "doctrine/dbal": "^4.2"
     }
 }

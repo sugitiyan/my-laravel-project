@@ -2,61 +2,47 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FashionablyLate</title>
-    <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}" />
-    @yield('css')
+    <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}">
 </head>
 <body>
-    <header class="header">
-    <div class="header__inner">
-      <a class="header__logo" href="/">
-        FashionablyLate
-      </a>
-    </div>
-  </header>
-
-  <main>
-    @yield('content')
-  </main>
-</body>
-
-  <main>
     <div class="contact-form__content">
-      <div class="contact-form__heading">{{ $heading }}</div>
-       <h2>Contact</h2>
+        <div class="contact-form__heading">{{ $heading }}</div>
+        <h2>Contact</h2>
     </div>
-      <form class="form" action="/contacts/confirm" method="post">
+    <form action="{{ route('contacts.confirm') }}" method="POST">
         @csrf
         <div class="form-group">
-            <label for="last_name">お名前 <span style="color: red;">*</span></label>
-            <input type="text" id="last_name" name="last_name" placeholder="例: 山田" value="{{ old('last_name') }}">
+            <label for="last_name">お名前 (姓) <span style="color: red;">*</span></label>
+            <input type="text" id="last_name" name="last_name" placeholder="例: 山田" value="{{ $contact['last_name'] ?? old('last_name') }}" readonly>
             @error('last_name')
                 <span class="error-message">{{ $message }}</span>
             @enderror
         </div>
 
         <div class="form-group">
-            <label for="first_name">お名前 <span style="color: red;">*</span></label>
-            <input type="text" id="first_name" name="first_name" placeholder="例: 太郎" value="{{ old('first_name') }}">
+            <label for="first_name">お名前 (名) <span style="color: red;">*</span></label>
+            <input type="text" id="first_name" name="first_name" placeholder="例: 太郎" value="{{ old('first_name') }}" required>
             @error('first_name')
                 <span class="error-message">{{ $message }}</span>
             @enderror
         </div>
 
-        < class="form-group">
+        <div class="form-group">
             <label>性別 <span style="color: red;">*</span></label>
-            <div class="radio-group">
-                
+            <div>
+                <input type="radio" id="male" name="gender" value="男性" {{ old('gender') == '男性' ? 'checked' : '' }}>
+                <label for="male">男性</label>
+                <input type="radio" id="female" name="gender" value="女性" {{ old('gender') == '女性' ? 'checked' : '' }}>
+                <label for="female">女性</label>
+                <input type="radio" id="other" name="gender" value="その他" {{ old('gender') == 'その他' ? 'checked' : '' }}>
+                <label for="other">その他</label>
             </div>
             @error('gender')
                 <span class="error-message">{{ $message }}</span>
             @enderror
-        <div>
-             <input type="radio" name="gender" value="男性" {{ old('gender') == '男性' ? 'checked' : '' }}> 男性
-             <input type="radio" name="gender" value="女性" {{ old('gender') == '女性' ? 'checked' : '' }}> 女性
-             <input type="radio" name="gender" value="その他" {{ old('gender') == 'その他' ? 'checked' : '' }}> その他
         </div>
 
         <div class="form-group">
@@ -66,6 +52,22 @@
                 <span class="error-message">{{ $message }}</span>
             @enderror
         </div>
+
+        <div class="form-group">
+    <label for="category_id">お問い合わせカテゴリ <span style="color: red;">*</span></label>
+    <select name="category_id" id="category_id" required>
+        <option value="">選択してください</option>
+        @foreach($categories as $id => $category)
+            <option value="{{ $id }}" {{ old('category_id') == $id ? 'selected' : '' }}>
+                {{ $category }}
+            </option>
+        @endforeach
+    </select>
+    @error('category_id')
+        <span class="error-message">{{ $message }}</span>
+    @enderror
+</div>
+
 
         <div class="form-group">
             <label for="phone">電話番号 <span style="color: red;">*</span></label>
@@ -114,7 +116,5 @@
 
         <button type="submit">確認画面</button>
     </form>
-</div>
-
 </body>
 </html>

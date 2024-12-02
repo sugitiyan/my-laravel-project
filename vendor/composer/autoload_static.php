@@ -43,8 +43,10 @@ class ComposerStaticInit0c56a11acfaa03e580f1b2413e6be119
         'P' => 
         array (
             'Psr\\SimpleCache\\' => 16,
+            'Psr\\Log\\' => 8,
             'Psr\\Container\\' => 14,
             'Psr\\Clock\\' => 10,
+            'Psr\\Cache\\' => 10,
             'PragmaRX\\Google2FA\\' => 19,
             'ParagonIE\\ConstantTime\\' => 23,
         ),
@@ -60,6 +62,8 @@ class ComposerStaticInit0c56a11acfaa03e580f1b2413e6be119
         'D' => 
         array (
             'Doctrine\\Inflector\\' => 19,
+            'Doctrine\\Deprecations\\' => 22,
+            'Doctrine\\DBAL\\' => 14,
             'DASPRiD\\Enum\\' => 13,
         ),
         'C' => 
@@ -126,6 +130,10 @@ class ComposerStaticInit0c56a11acfaa03e580f1b2413e6be119
         array (
             0 => __DIR__ . '/..' . '/psr/simple-cache/src',
         ),
+        'Psr\\Log\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/log/src',
+        ),
         'Psr\\Container\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/container/src',
@@ -133,6 +141,10 @@ class ComposerStaticInit0c56a11acfaa03e580f1b2413e6be119
         'Psr\\Clock\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/clock/src',
+        ),
+        'Psr\\Cache\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/cache/src',
         ),
         'PragmaRX\\Google2FA\\' => 
         array (
@@ -160,6 +172,14 @@ class ComposerStaticInit0c56a11acfaa03e580f1b2413e6be119
         'Doctrine\\Inflector\\' => 
         array (
             0 => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Inflector',
+        ),
+        'Doctrine\\Deprecations\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/doctrine/deprecations/lib/Doctrine/Deprecations',
+        ),
+        'Doctrine\\DBAL\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/doctrine/dbal/src',
         ),
         'DASPRiD\\Enum\\' => 
         array (
