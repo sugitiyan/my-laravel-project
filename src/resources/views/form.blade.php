@@ -12,11 +12,13 @@
         <div class="contact-form__heading">{{ $heading }}</div>
         <h2>Contact</h2>
     </div>
-    <form action="{{ route('contacts.confirm') }}" method="POST">
+    <form action="{{ route('contacts.store') }}" method="post">
+    @csrf
+
         @csrf
         <div class="form-group">
             <label for="last_name">お名前 (姓) <span style="color: red;">*</span></label>
-            <input type="text" id="last_name" name="last_name" placeholder="例: 山田" value="{{ $contact['last_name'] ?? old('last_name') }}" readonly>
+            <input type="text" id="last_name" name="last_name" placeholder="例: 山田" value="{{ old('last_name', $contact['last_name'] ?? '') }}"/>
             @error('last_name')
                 <span class="error-message">{{ $message }}</span>
             @enderror
@@ -24,7 +26,7 @@
 
         <div class="form-group">
             <label for="first_name">お名前 (名) <span style="color: red;">*</span></label>
-            <input type="text" id="first_name" name="first_name" placeholder="例: 太郎" value="{{ old('first_name') }}" required>
+            <input type="text" id="first_name" name="first_name" placeholder="例: 太郎" value="{{ old('first_name', $contact['first_name'] ?? '') }}" />
             @error('first_name')
                 <span class="error-message">{{ $message }}</span>
             @enderror
@@ -52,22 +54,6 @@
                 <span class="error-message">{{ $message }}</span>
             @enderror
         </div>
-
-        <div class="form-group">
-    <label for="category_id">お問い合わせカテゴリ <span style="color: red;">*</span></label>
-    <select name="category_id" id="category_id" required>
-        <option value="">選択してください</option>
-        @foreach($categories as $id => $category)
-            <option value="{{ $id }}" {{ old('category_id') == $id ? 'selected' : '' }}>
-                {{ $category }}
-            </option>
-        @endforeach
-    </select>
-    @error('category_id')
-        <span class="error-message">{{ $message }}</span>
-    @enderror
-</div>
-
 
         <div class="form-group">
             <label for="phone">電話番号 <span style="color: red;">*</span></label>
