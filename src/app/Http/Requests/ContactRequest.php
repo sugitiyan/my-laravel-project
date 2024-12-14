@@ -17,13 +17,13 @@ class ContactRequest extends FormRequest
             'category_id' => 'required|integer|exists:categories,id', 
             'last_name' => 'required|string|max:255',
             'first_name' => 'required|string|max:255',
-            'gender' => 'required|integer|in:1,2,3',
+            'gender' => 'required|string|in:男性,女性,その他',
             'email' => 'required|email|max:255',
-            'tel' => 'required|regex:/^[0-9]{5,15}$/',
+            'phone' => 'required|regex:/^0\d{1,4}-\d{1,4}-\d{4}$/',
             'address' => 'required|string|max:255',
             'building' => 'nullable|string|max:255',
-            'detail' => 'required|string|max:120', // 仕様と一致させる場合、確認必要
-            'category_id' => 'required|exists:categories,id',
+            'inquiry_type' => 'required|string|max:255',
+            'inquiry_content' => 'required|string',
         ];
     }
 

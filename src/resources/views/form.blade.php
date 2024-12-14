@@ -12,10 +12,8 @@
         <div class="contact-form__heading">{{ $heading }}</div>
         <h2>Contact</h2>
     </div>
-    <form action="{{ route('contacts.store') }}" method="post">
+    <form method="POST" action="{{ route('contact.confirm') }}" >
     @csrf
-
-        @csrf
         <div class="form-group">
             <label for="last_name">お名前 (姓) <span style="color: red;">*</span></label>
             <input type="text" id="last_name" name="last_name" placeholder="例: 山田" value="{{ old('last_name', $contact['last_name'] ?? '') }}"/>
@@ -49,7 +47,7 @@
 
         <div class="form-group">
             <label for="email">メールアドレス <span style="color: red;">*</span></label>
-            <input type="email" name="email" id="email" placeholder="例: test@example.com" value="{{ old('email') }}">
+            <input type="email" name="email" id="email" placeholder="例: test@example.com" value="{{ old('email') }}"required>
             @error('email')
                 <span class="error-message">{{ $message }}</span>
             @enderror
@@ -65,7 +63,7 @@
 
         <div class="form-group">
             <label for="address">住所 <span style="color: red;">*</span></label>
-            <input type="text" name="address" id="address" placeholder="例: 東京都渋谷区千駄ヶ谷1-2-3" value="{{ old('address') }}">
+            <input type="text" name="address" id="address" placeholder="例: 東京都渋谷区千駄ヶ谷1-2-3" value="{{ old('address','未設定') }}">
             @error('address')
                 <span class="error-message">{{ $message }}</span>
             @enderror

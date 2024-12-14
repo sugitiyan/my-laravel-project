@@ -18,11 +18,14 @@
     </div>
 </header>
   <main>
-         @if (session('message'))
-            <div class="alert alert-success">
-                {{ session('message') }}
-            </div>
-        @endif
+  @if ($errors->any())
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+   @endif
+
 
    
     <div class="confirm__content">
@@ -36,13 +39,14 @@
             <tr>
                 <td class="label">お名前</td>
                 <td class="contact_confirm-table__text">
-                <input type="text" name="last_name" value="{{ $contact['last_name'] }}" readonly>
-                <input type="text" name="first_name" value="{{ $contact['first_name'] }}" readonly>
+                <input type="hidden" name="last_name" value="{{ $contact['last_name'] }}">
+                <input type="hidden" name="first_name" value="{{ $contact['first_name'] }}">
               </td>
             </tr>
             <tr>
                 <td class="label">性別</td>
                 <td class="contact_confirm-table__text">
+                   {{ $contact['gender'] }}
                 <input type="hidden" name="gender" value="{{ $contact['gender'] }}">
               </td> 
             </tr>
@@ -86,9 +90,6 @@
 
         <div class="buttons">
            <a href="{{ route('contact.form') }}" class="button">修正</a>
-
-        <form action="{{ route('contacts.store') }}" method="POST">
-           @csrf
            <button type="submit">送信</button> 
         </div>
     </div>
