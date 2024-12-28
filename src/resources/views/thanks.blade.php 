@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -9,9 +10,11 @@
     <link rel="stylesheet" href="{{ asset('css/thanks.css') }}">
 </head>
 <body>
-    <div class="container">
+    <header class="header">
+    <div class="header__inner">
         <h1>お問い合わせありがとうございました</h1>
         <a href="/" class="button">HOME</a>
     </div>
+    </header>
 </body> 
 </html>

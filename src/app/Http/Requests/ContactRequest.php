@@ -19,7 +19,7 @@ class ContactRequest extends FormRequest
             'first_name' => 'required|string|max:255',
             'gender' => 'required|string|in:男性,女性,その他',
             'email' => 'required|email|max:255',
-            'phone' => 'required|regex:/^0\d{1,4}-\d{1,4}-\d{4}$/',
+            'tel' => 'nullable|string|max:15',
             'address' => 'required|string|max:255',
             'building' => 'nullable|string|max:255',
             'inquiry_type' => 'required|string|max:255',

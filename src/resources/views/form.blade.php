@@ -6,13 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FashionablyLate</title>
     <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/form.css') }}" />
 </head>
 <body>
+     <header class="header">
+     <div class="header__form">
+            FashionablyLate
+     </div>
+    </header>
+     <main>
     <div class="contact-form__content">
-        <div class="contact-form__heading">{{ $heading }}</div>
+      <div class="contact-form__heading">
         <h2>Contact</h2>
-    </div>
-    <form method="POST" action="{{ route('contact.confirm') }}" >
+      </div>
+    <form class="form" action="/contacts/confirm" method="post">
     @csrf
         <div class="form-group">
             <label for="last_name">お名前 (姓) <span style="color: red;">*</span></label>
@@ -100,5 +107,6 @@
 
         <button type="submit">確認画面</button>
     </form>
+ </main>
 </body>
 </html>

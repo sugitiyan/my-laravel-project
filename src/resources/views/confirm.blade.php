@@ -12,28 +12,15 @@
 <body>
      <header class="header">
     <div class="header__inner">
-      <a class="header__logo" href="/">
         FashionablyLate
-      </a>
     </div>
 </header>
   <main>
-  @if ($errors->any())
-    <ul>
-        @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-        @endforeach
-    </ul>
-   @endif
-
-
-   
-    <div class="confirm__content">
-      <div class="confirm__heading">
+   <div class="contact-form__content">
+      <div class="contact-form__heading">
         <h2>Contact</h2>
-      </div>
-
-        <form action="{{ route('contacts.store') }}" method="post">
+      </div> 
+        <form class="form" action="/contacts" method="post">
             @csrf
         <table>
             <tr>
